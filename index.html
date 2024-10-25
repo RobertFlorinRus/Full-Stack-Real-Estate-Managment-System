@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exam CS230</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Exam CS230 Real Estate Management</h1>
+
+    <!-- Tenant Management -->
+    <h2>Tenants</h2>
+    <form id="tenantForm">
+      <select id="tenantTitle" required>
+        <option value="" disabled selected>Title</option>
+        <option value="Mx">Mx</option>
+        <option value="Ms">Ms</option>
+        <option value="Mr">Mr</option>
+        <option value="Mrs">Mrs</option>
+        <option value="Miss">Miss</option>
+        <option value="Dr">Dr</option>
+        <option value="Other">Other</option>
+      </select>
+      <input
+        type="text"
+        id="tenantOtherTitle"
+        placeholder="Other Title (if applicable)"
+      />
+      <input
+        type="text"
+        id="tenantFirstName"
+        placeholder="First Name"
+        required
+      />
+      <input type="text" id="tenantSurname" placeholder="Surname" required />
+      <input type="text" id="tenantPhone" placeholder="Phone" required />
+      <input type="email" id="tenantEmail" placeholder="Email" required />
+      <input
+        type="text"
+        id="tenantAddress1"
+        placeholder="Address Line 1"
+        required
+      />
+      <input type="text" id="tenantAddress2" placeholder="Address Line 2" />
+      <input type="text" id="tenantTown" placeholder="Town" required />
+      <input
+        type="text"
+        id="tenantCountyCity"
+        placeholder="County/City"
+        required
+      />
+      <input type="text" id="tenantEircode" placeholder="Eircode" />
+      <button type="submit">Add Tenant</button>
+    </form>
+    <ul id="tenantsList"></ul>
+
+    <!-- Modal for editing tenants -->
+    <div
+      id="editTenantModal"
+      style="
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      "
+    >
+      <div
+        style="
+          background-color: white;
+          margin: 100px auto;
+          padding: 20px;
+          width: 50%;
+        "
+      >
+        <h2>Edit Tenant</h2>
+        <form id="editTenantForm">
+          <input
+            type="text"
+            id="editTenantFirstName"
+            placeholder="First Name"
+            required
+          />
+          <input
+            type="text"
+            id="editTenantSurname"
+            placeholder="Surname"
+            required
+          />
+          <input
+            type="text"
+            id="editTenantPhone"
+            placeholder="Phone"
+            required
+          />
+          <input
+            type="email"
+            id="editTenantEmail"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="text"
+            id="editTenantAddress1"
+            placeholder="Address Line 1"
+            required
+          />
+          <input
+            type="text"
+            id="editTenantAddress2"
+            placeholder="Address Line 2"
+          />
+          <input type="text" id="editTenantTown" placeholder="Town" required />
+          <input
+            type="text"
+            id="editTenantCountyCity"
+            placeholder="County/City"
+            required
+          />
+          <input type="text" id="editTenantEircode" placeholder="Eircode" />
+          <button type="submit">Update Tenant</button>
+          <button
+            type="button"
+            onclick="document.getElementById('editTenantModal').style.display='none';"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Landlord Management -->
+    <h2>Landlords</h2>
+    <form id="landlordForm">
+      <select id="landlordTitle" required>
+        <option value="" disabled selected>Title</option>
+        <option value="Mx">Mx</option>
+        <option value="Ms">Ms</option>
+        <option value="Mr">Mr</option>
+        <option value="Mrs">Mrs</option>
+        <option value="Miss">Miss</option>
+        <option value="Dr">Dr</option>
+        <option value="Other">Other</option>
+      </select>
+      <input
+        type="text"
+        id="landlordOtherTitle"
+        placeholder="Other Title (if applicable)"
+      />
+      <input
+        type="text"
+        id="landlordFirstName"
+        placeholder="First Name"
+        required
+      />
+      <input type="text" id="landlordSurname" placeholder="Surname" required />
+      <input type="date" id="landlordDob" required />
+      <input type="text" id="landlordPhone" placeholder="Phone" required />
+      <input type="email" id="landlordEmail" placeholder="Email" required />
+      <input
+        type="text"
+        id="landlordAddress1"
+        placeholder="Address Line 1"
+        required
+      />
+      <input type="text" id="landlordAddress2" placeholder="Address Line 2" />
+      <input type="text" id="landlordTown" placeholder="Town" required />
+      <input
+        type="text"
+        id="landlordCountyCity"
+        placeholder="County/City"
+        required
+      />
+      <input type="text" id="landlordEircode" placeholder="Eircode" />
+      <select id="landlordPermissionToRent" required>
+        <option value="" disabled selected>Permission to Rent (Y/N)</option>
+        <option value="Y">Y</option>
+        <option value="N">N</option>
+      </select>
+      <select id="landlordContactViaEmail" required>
+        <option value="" disabled selected>Contact via Email (Y/N)</option>
+        <option value="Y">Y</option>
+        <option value="N">N</option>
+      </select>
+      <button type="submit">Add Landlord</button>
+    </form>
+    <ul id="landlordsList"></ul>
+
+    <!-- Modal for editing landlords -->
+    <div
+      id="editLandlordModal"
+      style="
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      "
+    >
+      <div
+        style="
+          background-color: white;
+          margin: 100px auto;
+          padding: 20px;
+          width: 50%;
+        "
+      >
+        <h2>Edit Landlord</h2>
+        <form id="editLandlordForm">
+          <input
+            type="text"
+            id="editLandlordFirstName"
+            placeholder="First Name"
+            required
+          />
+          <input
+            type="text"
+            id="editLandlordSurname"
+            placeholder="Surname"
+            required
+          />
+          <input type="date" id="editLandlordDob" required />
+          <input
+            type="text"
+            id="editLandlordPhone"
+            placeholder="Phone"
+            required
+          />
+          <input
+            type="email"
+            id="editLandlordEmail"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="text"
+            id="editLandlordAddress1"
+            placeholder="Address Line 1"
+            required
+          />
+          <input
+            type="text"
+            id="editLandlordAddress2"
+            placeholder="Address Line 2"
+          />
+          <input
+            type="text"
+            id="editLandlordTown"
+            placeholder="Town"
+            required
+          />
+          <input
+            type="text"
+            id="editLandlordCountyCity"
+            placeholder="County/City"
+            required
+          />
+          <input type="text" id="editLandlordEircode" placeholder="Eircode" />
+          <select id="editLandlordPermissionToRent" required>
+            <option value="" disabled selected>Permission to Rent (Y/N)</option>
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+          </select>
+          <select id="editLandlordContactViaEmail" required>
+            <option value="" disabled selected>Contact via Email (Y/N)</option>
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+          </select>
+          <button type="submit">Update Landlord</button>
+          <button
+            type="button"
+            onclick="document.getElementById('editLandlordModal').style.display='none';"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Contract Management -->
+    <h2>Contracts</h2>
+    <form id="contractForm">
+      <input type="date" id="contractDate" required />
+      <input
+        type="text"
+        id="propertyAddress"
+        placeholder="Property Address"
+        required
+      />
+      <input
+        type="text"
+        id="propertyDoorNumber"
+        placeholder="Door Number"
+        required
+      />
+      <input
+        type="number"
+        id="feeMonthly"
+        placeholder="Fee (Monthly)"
+        required
+      />
+      <select id="contractLength" required>
+        <option value="" disabled selected>Contract Length</option>
+        <option value="Month">Month</option>
+        <option value="Year">Year</option>
+        <option value="Permanent">Permanent</option>
+      </select>
+      <select id="propertyType" required>
+        <option value="" disabled selected>Property Type</option>
+        <option value="Apartment">Apartment</option>
+        <option value="Semi-Detached">Semi-Detached</option>
+        <option value="Detached">Detached</option>
+        <option value="Other">Other</option>
+      </select>
+      <input
+        type="text"
+        id="otherPropertyType"
+        placeholder="Other Property Type (if applicable)"
+      />
+      <input
+        type="text"
+        id="tenantIds"
+        placeholder="Tenant IDs (comma-separated, max 3)"
+        required
+      />
+      <input type="number" id="landlordId" placeholder="Landlord ID" required />
+      <button type="submit">Add Contract</button>
+    </form>
+    <ul id="contractsList"></ul>
+
+    <!-- Modal for editing contracts -->
+    <div
+      id="editContractModal"
+      style="
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      "
+    >
+      <div
+        style="
+          background-color: white;
+          margin: 100px auto;
+          padding: 20px;
+          width: 50%;
+        "
+      >
+        <h2>Edit Contract</h2>
+        <form id="editContractForm">
+          <input
+            type="date"
+            id="editContractDate"
+            placeholder="Contract Date"
+            required
+          />
+          <input
+            type="text"
+            id="editPropertyAddress"
+            placeholder="Property Address"
+            required
+          />
+          <input
+            type="text"
+            id="editPropertyDoorNumber"
+            placeholder="Property Door Number"
+            required
+          />
+          <input
+            type="number"
+            id="editFeeMonthly"
+            placeholder="Monthly Fee"
+            required
+          />
+
+          <select id="editContractLength" required>
+            <option value="" disabled selected>Select Contract Length</option>
+            <option value="Month">Month</option>
+            <option value="Year">Year</option>
+            <option value="Permanent">Permanent</option>
+          </select>
+
+          <select id="editPropertyType" required>
+            <option value="" disabled selected>Select Property Type</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Semi-Detached">Semi-Detached</option>
+            <option value="Detached">Detached</option>
+            <option value="Other">Other</option>
+          </select>
+          <input
+            type="text"
+            id="editOtherPropertyType"
+            placeholder="Other Property Type (if applicable)"
+          />
+
+          <input
+            type="text"
+            id="editTenantIds"
+            placeholder="Comma-separated Tenant IDs"
+            required
+          />
+          <input
+            type="number"
+            id="editLandlordId"
+            placeholder="Landlord ID"
+            required
+          />
+
+          <button type="submit">Update Contract</button>
+          <button
+            type="button"
+            onclick="document.getElementById('editContractModal').style.display='none';"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
